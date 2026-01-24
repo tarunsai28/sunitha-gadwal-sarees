@@ -7,12 +7,12 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 export default function CollectionsPage() {
     return (
         <main className="min-h-screen bg-brand-ivory">
-            <Header />
+            <Header theme="transparent-light" />
 
             {/* Page Header */}
-            <div className="pt-32 pb-12 bg-brand-cream/30 text-center px-4">
-                <h1 className="font-serif text-4xl md:text-5xl text-brand-black mb-4">Our Collections</h1>
-                <p className="text-brand-charcoal max-w-2xl mx-auto">
+            <div className="pt-32 pb-16 bg-brand-maroon text-center px-4">
+                <h1 className="font-serif text-4xl md:text-5xl text-white mb-4">Our Collections</h1>
+                <p className="text-brand-cream/90 max-w-2xl mx-auto font-light text-lg">
                     Discover our exclusive range of Authentic Gadwal Handloom Sarees. Each piece is unique and woven with tradition.
                 </p>
             </div>

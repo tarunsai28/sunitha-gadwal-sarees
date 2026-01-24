@@ -80,7 +80,7 @@ export default function ContactPage() {
                             allowFullScreen={true}
                             loading="lazy"
                             title="Google Maps Location"
-                            className="absolute inset-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
+                            className="absolute inset-0 w-full h-full"
                         ></iframe>
                     </div>
                 </div>

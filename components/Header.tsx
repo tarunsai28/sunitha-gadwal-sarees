@@ -78,7 +78,10 @@ export default function Header({ theme = "transparent-dark" }: HeaderProps) {
                             <WhatsAppButton
                                 variant="primary"
                                 label="Inquire"
-                                className="!py-2 !px-6 !text-xs !bg-brand-maroon !text-white hover:!bg-brand-maroon/90 border-none shadow-md"
+                                className={`!py-2 !px-6 !text-xs border-none shadow-md ${isLightText
+                                        ? "!bg-black !text-white hover:!bg-gray-900"
+                                        : "!bg-brand-maroon !text-white hover:!bg-brand-maroon/90"
+                                    }`}
                             />
                         </div>
 

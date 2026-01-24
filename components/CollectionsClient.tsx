@@ -10,13 +10,11 @@ import { cn } from "@/lib/utils";
 export default function CollectionsClient() {
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-    const [selectedColor, setSelectedColor] = useState<string | null>(null);
     const [sortBy, setSortBy] = useState<"newest" | "az" | "za">("newest");
     const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
 
-    // Extract unique values for filters
-    const categories = Array.from(new Set(products.map(p => p.category)));
-    const colors = Array.from(new Set(products.map(p => p.color)));
+    // Fixed categories as per user request
+    const categories = ["Pure Handloom pattu", "Powerloom pattu", "Semi-Gadwal pattu"];
 
     const filteredProducts = useMemo(() => {
         return products
@@ -25,9 +23,8 @@ export default function CollectionsClient() {
                     product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                     product.code.toLowerCase().includes(searchQuery.toLowerCase());
                 const matchesCategory = selectedCategory ? product.category === selectedCategory : true;
-                const matchesColor = selectedColor ? product.color === selectedColor : true;
 
-                return matchesSearch && matchesCategory && matchesColor;
+                return matchesSearch && matchesCategory;
             })
             .sort((a, b) => {
                 if (sortBy === "newest") return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0); // Simplified logic: New first
@@ -35,11 +32,10 @@ export default function CollectionsClient() {
                 if (sortBy === "za") return b.title.localeCompare(a.title);
                 return 0;
             });
-    }, [searchQuery, selectedCategory, selectedColor, sortBy]);
+    }, [searchQuery, selectedCategory, sortBy]);
 
     const clearFilters = () => {
         setSelectedCategory(null);
-        setSelectedColor(null);
         setSearchQuery("");
     };
 
@@ -63,21 +59,6 @@ export default function CollectionsClient() {
                                 className={cn("block text-sm text-left hover:text-brand-maroon transition-colors", selectedCategory === cat ? "font-bold text-brand-maroon" : "text-brand-charcoal")}
                             >
                                 {cat}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
-                <div>
-                    <h3 className="font-serif text-lg font-bold mb-4">Colors</h3>
-                    <div className="space-y-2">
-                        {colors.map(color => (
-                            <button
-                                key={color}
-                                onClick={() => setSelectedColor(color === selectedColor ? null : color)}
-                                className={cn("block text-sm text-left hover:text-brand-maroon transition-colors", selectedColor === color ? "font-bold text-brand-maroon" : "text-brand-charcoal")}
-                            >
-                                {color}
                             </button>
                         ))}
                     </div>
@@ -124,17 +105,12 @@ export default function CollectionsClient() {
                 </div>
 
                 {/* Active Filters Summary */}
-                {(selectedCategory || selectedColor || searchQuery) && (
+                {(selectedCategory || searchQuery) && (
                     <div className="flex flex-wrap items-center gap-2 mb-6">
                         <span className="text-xs text-gray-500 uppercase tracking-widest mr-2">Active Filters:</span>
                         {selectedCategory && (
                             <span className="px-3 py-1 bg-brand-maroon text-white text-xs rounded-full flex items-center gap-1">
                                 {selectedCategory} <button onClick={() => setSelectedCategory(null)}><X size={12} /></button>
-                            </span>
-                        )}
-                        {selectedColor && (
-                            <span className="px-3 py-1 bg-brand-maroon text-white text-xs rounded-full flex items-center gap-1">
-                                {selectedColor} <button onClick={() => setSelectedColor(null)}><X size={12} /></button>
                             </span>
                         )}
                         {searchQuery && (
@@ -187,20 +163,6 @@ export default function CollectionsClient() {
                                             className={cn("block w-full text-left p-2 rounded", selectedCategory === cat ? "bg-brand-cream" : "")}
                                         >
                                             {cat}
-                                        </button>
-                                    ))}
-                                </div>
-                            </div>
-                            <div>
-                                <h4 className="font-bold mb-3">Colors</h4>
-                                <div className="space-y-2">
-                                    {colors.map(color => (
-                                        <button
-                                            key={color}
-                                            onClick={() => { setSelectedColor(color === selectedColor ? null : color); setIsMobileFiltersOpen(false); }}
-                                            className={cn("block w-full text-left p-2 rounded", selectedColor === color ? "bg-brand-cream" : "")}
-                                        >
-                                            {color}
                                         </button>
                                     ))}
                                 </div>
