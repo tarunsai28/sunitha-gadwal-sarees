@@ -3,6 +3,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { siteContent } from "@/data/siteContent";
 import { Menu, X, ShoppingBag } from "lucide-react";
 import WhatsAppButton from "./WhatsAppButton";
@@ -79,8 +80,8 @@ export default function Header({ theme = "transparent-dark" }: HeaderProps) {
                                 variant="primary"
                                 label="Inquire"
                                 className={`!py-2 !px-6 !text-xs border-none shadow-md ${isLightText
-                                        ? "!bg-black !text-white hover:!bg-gray-900"
-                                        : "!bg-brand-maroon !text-white hover:!bg-brand-maroon/90"
+                                    ? "!bg-black !text-white hover:!bg-gray-900"
+                                    : "!bg-brand-maroon !text-white hover:!bg-brand-maroon/90"
                                     }`}
                             />
                         </div>

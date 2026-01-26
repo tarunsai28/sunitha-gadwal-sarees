@@ -24,6 +24,11 @@ export const metadata: Metadata = {
     description: "Authentic Gadwal Handloom Sarees directly from the manufacturer.",
     type: "website",
   },
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
+  },
 };
 
 import Providers from "@/components/Providers";
