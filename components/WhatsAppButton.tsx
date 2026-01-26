@@ -1,10 +1,10 @@
-
 "use client";
 
+import { useState, useEffect } from "react";
 import { siteContent } from "@/data/siteContent";
 import { MessageCircle } from "lucide-react";
 import Link from "next/link";
-import { cn } from "@/lib/utils"; // We might need to create this utility or just use template literals if simple
+import { cn } from "@/lib/utils";
 
 interface WhatsAppButtonProps {
     productCode?: string;
@@ -19,13 +19,20 @@ export default function WhatsAppButton({
     variant = "primary",
     label = siteContent.cta.whatsapp,
 }: WhatsAppButtonProps) {
+    const [currentUrl, setCurrentUrl] = useState("");
+
+    useEffect(() => {
+        if (typeof window !== "undefined" && productCode) {
+            setCurrentUrl(`${window.location.origin}/product/${productCode}`);
+        }
+    }, [productCode]);
+
     // Construct message
     const message = productCode
-        ? `Hi ${siteContent.brandName}, I’m interested in (Saree Code: ${productCode}). Please share price, blouse details, and available colors.`
+        ? `Hi ${siteContent.brandName}, I’m interested in (Saree Code: ${productCode}). Please share price, blouse details, and available colors.\n\nProduct: ${currentUrl}`
         : `Hi ${siteContent.brandName}, I would like to know more about your collections.`;
 
     const encodedMessage = encodeURIComponent(message);
-    // Using the first phone number for WhatsApp
     const phoneNumber = siteContent.contact.phones[0].replace(/[^0-9]/g, "");
     const href = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 

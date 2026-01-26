@@ -44,12 +44,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                         label="Get Price"
                         className="w-full"
                     />
-                    <Link
-                        href={`/product/${product.code}`}
-                        className="block text-xs uppercase tracking-widest text-brand-charcoal hover:text-brand-maroon transition-colors underline underline-offset-4"
-                    >
-                        View Details
-                    </Link>
+
                 </div>
             </div>
         </div>

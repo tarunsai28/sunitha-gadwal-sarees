@@ -26,6 +26,8 @@ export const metadata: Metadata = {
   },
 };
 
+import Providers from "@/components/Providers";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -37,7 +39,9 @@ export default function RootLayout({
         className={`${playfair.variable} ${inter.variable} antialiased bg-brand-ivory text-brand-black font-sans`}
       >
         <JsonLd />
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

@@ -2,12 +2,14 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { Product, products } from "@/data/products";
+import { Product } from "@/data/products";
+import { useProducts } from "@/context/ProductContext";
 import ProductCard from "@/components/ProductCard";
 import { Search, Filter, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function CollectionsClient() {
+    const { products } = useProducts();
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const [sortBy, setSortBy] = useState<"newest" | "az" | "za">("newest");

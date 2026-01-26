@@ -1,9 +1,12 @@
 
+"use client";
+
 import Link from "next/link";
-import { products } from "@/data/products";
+import { useProducts } from "@/context/ProductContext";
 import ProductCard from "@/components/ProductCard";
 
 export default function NewArrivals() {
+    const { products } = useProducts();
     // Get newest 8 products
     const newProducts = products.filter(p => p.isNew).slice(0, 8);
 
