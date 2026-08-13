@@ -111,13 +111,13 @@ export default function CollectionsClient() {
                     <div className="flex flex-wrap items-center gap-2 mb-6">
                         <span className="text-xs text-gray-500 uppercase tracking-widest mr-2">Active Filters:</span>
                         {selectedCategory && (
-                            <span className="px-3 py-1 bg-brand-maroon text-white text-xs rounded-full flex items-center gap-1">
-                                {selectedCategory} <button onClick={() => setSelectedCategory(null)}><X size={12} /></button>
+                            <span className="pl-3 pr-1 py-1 bg-brand-maroon text-white text-xs rounded-full flex items-center gap-1">
+                                {selectedCategory} <button onClick={() => setSelectedCategory(null)} aria-label="Remove category filter" className="p-1.5"><X size={12} /></button>
                             </span>
                         )}
                         {searchQuery && (
-                            <span className="px-3 py-1 bg-brand-maroon text-white text-xs rounded-full flex items-center gap-1">
-                                Search: "{searchQuery}" <button onClick={() => setSearchQuery("")}><X size={12} /></button>
+                            <span className="pl-3 pr-1 py-1 bg-brand-maroon text-white text-xs rounded-full flex items-center gap-1">
+                                Search: "{searchQuery}" <button onClick={() => setSearchQuery("")} aria-label="Clear search" className="p-1.5"><X size={12} /></button>
                             </span>
                         )}
                         <button onClick={clearFilters} className="text-xs text-brand-maroon underline ml-2">Clear All</button>
@@ -141,11 +141,11 @@ export default function CollectionsClient() {
 
             {/* Mobile Filters Drawer */}
             {isMobileFiltersOpen && (
-                <div className="fixed inset-0 z-50 bg-black/50 lg:hidden">
+                <div className="fixed inset-0 z-[60] bg-black/50 lg:hidden">
                     <div className="absolute right-0 top-0 bottom-0 w-80 bg-white p-6 overflow-y-auto">
                         <div className="flex justify-between items-center mb-8">
                             <h3 className="font-serif text-xl font-bold">Filters</h3>
-                            <button onClick={() => setIsMobileFiltersOpen(false)}><X /></button>
+                            <button onClick={() => setIsMobileFiltersOpen(false)} aria-label="Close filters" className="p-2 -mr-2"><X /></button>
                         </div>
 
                         <div className="space-y-8">

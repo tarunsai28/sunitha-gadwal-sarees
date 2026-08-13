@@ -20,12 +20,21 @@ export default function WhatsAppButton({
     label = siteContent.cta.whatsapp,
 }: WhatsAppButtonProps) {
     const [currentUrl, setCurrentUrl] = useState("");
+    const [isPastHero, setIsPastHero] = useState(false);
 
     useEffect(() => {
         if (typeof window !== "undefined" && productCode) {
             setCurrentUrl(`${window.location.origin}/product/${productCode}`);
         }
     }, [productCode]);
+
+    useEffect(() => {
+        if (variant !== "floating") return;
+        const handleScroll = () => setIsPastHero(window.scrollY > 400);
+        handleScroll();
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [variant]);
 
     // Construct message
     const message = productCode
@@ -51,7 +60,7 @@ export default function WhatsAppButton({
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${baseStyles} ${variants.floating} ${className}`}
+                className={`whatsapp-fab ${baseStyles} ${variants.floating} ${className} transition-opacity ${isPastHero ? "opacity-100" : "opacity-0 pointer-events-none sm:opacity-100 sm:pointer-events-auto"}`}
                 aria-label="Chat on WhatsApp"
             >
                 <MessageCircle className="w-8 h-8" strokeWidth={1.5} />

@@ -17,14 +17,14 @@ export default function Footer() {
                         <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
                             {siteContent.tagline} We represent the true art of Gadwal, weaving heritage since decades.
                         </p>
-                        <div className="flex space-x-4 pt-2">
-                            <a href={siteContent.socials.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">
+                        <div className="flex -ml-2 pt-2">
+                            <a href={siteContent.socials.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="p-2.5 hover:text-brand-gold transition-colors">
                                 <Instagram size={20} />
                             </a>
-                            <a href={siteContent.socials.facebook} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">
+                            <a href={siteContent.socials.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="p-2.5 hover:text-brand-gold transition-colors">
                                 <Facebook size={20} />
                             </a>
-                            <a href={siteContent.socials.youtube} target="_blank" rel="noopener noreferrer" className="hover:text-brand-gold transition-colors">
+                            <a href={siteContent.socials.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="p-2.5 hover:text-brand-gold transition-colors">
                                 <Youtube size={20} />
                             </a>
                         </div>

@@ -48,7 +48,7 @@ export default function HeroSection() {
             </div>
 
             {/* Image - Right Side with Unique Arch Mask */}
-            <div className="w-full lg:w-1/2 min-h-[50vh] lg:min-h-screen relative order-1 lg:order-2 p-0 lg:p-0">
+            <div className="w-full lg:w-1/2 h-[50vh] lg:h-screen relative order-1 lg:order-2 p-0 lg:p-0">
                 <div className="relative h-full w-full rounded-bl-[60px] lg:rounded-tl-[250px] lg:rounded-bl-none overflow-hidden shadow-2xl border-b-8 lg:border-b-0 lg:border-l-8 border-brand-white">
                     <Image
                         src="/weaver-loom.jpg"
