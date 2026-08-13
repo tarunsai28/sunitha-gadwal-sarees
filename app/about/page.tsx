@@ -18,7 +18,7 @@ export default function AboutPage() {
                     <span className="text-brand-gold uppercase tracking-[0.2em] text-xs font-bold mb-4 block animate-fade-in">Our Story</span>
                     <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl mb-6">Weaving Heritage Since Generations</h1>
                     <p className="text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto">
-                        {siteContent.brandName} is not just a brand; it’s a legacy of authentic Gadwal handlooms, woven with passion and precision.
+                        Every saree we sell has passed through the same hands that wove it — no factory, no middleman, just {siteContent.owner} and our family of master weavers.
                     </p>
                 </div>
             </div>
@@ -66,7 +66,7 @@ export default function AboutPage() {
                     <div className="text-center max-w-2xl mx-auto mb-16">
                         <span className="text-brand-gold uppercase tracking-[0.2em] text-xs font-bold mb-3 block">Why Choose Us</span>
                         <h2 className="font-serif text-3xl md:text-4xl text-brand-black mb-6">Our Core Values</h2>
-                        <div className="w-24 h-1 bg-brand-maroon/20 mx-auto rounded-full"></div>
+                        <div className="interlock-divider w-24 mx-auto text-brand-gold/60"></div>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">

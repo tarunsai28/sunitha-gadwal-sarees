@@ -27,7 +27,7 @@ export default function SignatureCraft() {
                     <div className="text-center max-w-2xl mx-auto mb-16">
                         <span className="text-brand-gold uppercase tracking-[0.2em] text-xs font-bold mb-3 block">Our Heritage</span>
                         <h2 className="font-serif text-3xl md:text-4xl text-brand-black mb-6">Signature Craftsmanship</h2>
-                        <div className="w-24 h-1 bg-brand-maroon/20 mx-auto rounded-full"></div>
+                        <div className="interlock-divider w-24 mx-auto text-brand-gold/60"></div>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-12">
