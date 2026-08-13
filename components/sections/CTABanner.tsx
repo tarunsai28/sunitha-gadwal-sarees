@@ -8,9 +8,9 @@ export default function CTABanner() {
     return (
         <section className="py-20 bg-brand-maroon text-white text-center">
             <div className="container mx-auto px-4">
-                <h2 className="font-serif text-3xl md:text-4xl mb-6">Ready to Drape Elegance?</h2>
+                <h2 className="font-serif text-3xl md:text-4xl mb-6">Tell Us the Occasion</h2>
                 <p className="text-white/80 max-w-xl mx-auto mb-10 text-lg">
-                    Our master weavers are creating new masterpieces every day. Connect with us to see the latest collection or place a custom order.
+                    Wedding, festival, or everyday elegance — tell us what you&apos;re draping for, and we&apos;ll help you find the saree for it.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-6">

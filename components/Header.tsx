@@ -24,6 +24,11 @@ export default function Header({ theme = "transparent-dark" }: HeaderProps) {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
+    useEffect(() => {
+        document.body.classList.toggle("mobile-menu-open", isMobileMenuOpen);
+        return () => document.body.classList.remove("mobile-menu-open");
+    }, [isMobileMenuOpen]);
+
     const navLinks = [
         { name: "Home", href: "/" },
         { name: "Collections", href: "/collections" },
@@ -51,8 +56,7 @@ export default function Header({ theme = "transparent-dark" }: HeaderProps) {
                             }`}>
                             SGSH
                         </h1>
-                        <span className={`text-[10px] tracking-widest uppercase block opacity-0 group-hover:opacity-100 transition-opacity -mt-1 ${isLightText ? "text-brand-gold" : "text-brand-gold"
-                            }`}>
+                        <span className="text-[10px] tracking-widest uppercase block -mt-1 text-brand-gold">
                             Gadwal Sarees
                         </span>
                     </Link>

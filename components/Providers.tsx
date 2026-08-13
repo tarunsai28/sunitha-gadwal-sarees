@@ -1,10 +1,17 @@
 "use client";
 
 import { ProductProvider } from "@/context/ProductContext";
+import { Product } from "@/data/products";
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+export default function Providers({
+    children,
+    initialProducts,
+}: {
+    children: React.ReactNode;
+    initialProducts: Product[];
+}) {
     return (
-        <ProductProvider>
+        <ProductProvider initialProducts={initialProducts}>
             {children}
         </ProductProvider>
     );

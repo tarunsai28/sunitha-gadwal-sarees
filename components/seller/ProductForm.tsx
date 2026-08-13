@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { Product } from "@/data/products";
-import { X, Save, Upload } from "lucide-react";
+import { X, Save, Upload, Loader2 } from "lucide-react";
 
 interface ProductFormProps {
     initialData?: Partial<Product>;
-    onSave: (product: Product) => void;
+    onSave: (product: Product) => void | Promise<void>;
     onCancel: () => void;
 }
 
@@ -20,16 +20,42 @@ export default function ProductForm({ initialData, onSave, onCancel }: ProductFo
         description: "",
         images: [],
     });
+    const [uploading, setUploading] = useState(false);
+    const [uploadError, setUploadError] = useState("");
+    const [saving, setSaving] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const uploadFile = async (file: File) => {
+        setUploadError("");
+        setUploading(true);
+        try {
+            const body = new FormData();
+            body.append("file", file);
+            const res = await fetch("/api/upload", { method: "POST", body });
+            const data = await res.json();
+            if (!res.ok) {
+                throw new Error(data.error || "Upload failed");
+            }
+            setFormData(prev => ({ ...prev, images: [data.url] }));
+        } catch (err) {
+            setUploadError(err instanceof Error ? err.message : "Upload failed");
+        } finally {
+            setUploading(false);
+        }
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Basic validation could go here
-        onSave(formData as Product);
+        setSaving(true);
+        try {
+            await onSave(formData as Product);
+        } finally {
+            setSaving(false);
+        }
     };
 
     return (
@@ -98,39 +124,34 @@ export default function ProductForm({ initialData, onSave, onCancel }: ProductFo
                 <div>
                     <label className="block text-xs font-bold uppercase tracking-wider text-brand-charcoal mb-2">Image Upload</label>
                     <div
-                        className="relative border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-brand-maroon hover:bg-brand-maroon/5 transition-colors cursor-pointer group"
+                        className={`relative border-2 border-dashed rounded-lg p-8 text-center transition-colors group ${uploading ? "border-brand-maroon/40 bg-brand-maroon/5 cursor-wait" : "border-gray-300 hover:border-brand-maroon hover:bg-brand-maroon/5 cursor-pointer"}`}
                         onDragOver={(e) => e.preventDefault()}
                         onDrop={(e) => {
                             e.preventDefault();
-                            if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-                                const file = e.dataTransfer.files[0];
-                                const reader = new FileReader();
-                                reader.onloadend = () => {
-                                    setFormData(prev => ({ ...prev, images: [reader.result as string] }));
-                                };
-                                reader.readAsDataURL(file);
-                            }
+                            if (uploading) return;
+                            const file = e.dataTransfer.files?.[0];
+                            if (file) uploadFile(file);
                         }}
-                        onClick={() => document.getElementById('file-upload')?.click()}
+                        onClick={() => !uploading && document.getElementById('file-upload')?.click()}
                     >
                         <input
                             id="file-upload"
                             type="file"
-                            accept="image/*"
+                            accept="image/jpeg,image/png,image/webp,image/gif"
                             className="hidden"
+                            disabled={uploading}
                             onChange={(e) => {
-                                if (e.target.files && e.target.files[0]) {
-                                    const file = e.target.files[0];
-                                    const reader = new FileReader();
-                                    reader.onloadend = () => {
-                                        setFormData(prev => ({ ...prev, images: [reader.result as string] }));
-                                    };
-                                    reader.readAsDataURL(file);
-                                }
+                                const file = e.target.files?.[0];
+                                if (file) uploadFile(file);
                             }}
                         />
 
-                        {formData.images && formData.images.length > 0 ? (
+                        {uploading ? (
+                            <div className="space-y-2 py-4">
+                                <Loader2 size={24} className="mx-auto animate-spin text-brand-maroon" />
+                                <p className="text-sm font-medium text-brand-black">Uploading...</p>
+                            </div>
+                        ) : formData.images && formData.images.length > 0 ? (
                             <div className="relative w-full aspect-video bg-gray-100 rounded overflow-hidden">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img src={formData.images[0]} alt="Preview" className="w-full h-full object-contain" />
@@ -147,11 +168,12 @@ export default function ProductForm({ initialData, onSave, onCancel }: ProductFo
                                 </div>
                                 <div>
                                     <p className="text-sm font-medium text-brand-black">Click to upload or drag and drop</p>
-                                    <p className="text-xs text-gray-500">SVG, PNG, JPG or GIF (max 5MB)</p>
+                                    <p className="text-xs text-gray-500">PNG, JPG, WEBP or GIF (max 5MB)</p>
                                 </div>
                             </div>
                         )}
                     </div>
+                    {uploadError && <p className="text-red-500 text-xs mt-2">{uploadError}</p>}
                 </div>
             </div>
 
@@ -171,8 +193,12 @@ export default function ProductForm({ initialData, onSave, onCancel }: ProductFo
                 <button type="button" onClick={onCancel} className="px-6 py-2 text-sm font-medium text-brand-charcoal hover:bg-gray-50 rounded">
                     Cancel
                 </button>
-                <button type="submit" className="flex items-center gap-2 px-6 py-2 bg-brand-maroon text-white text-sm font-bold uppercase tracking-widest rounded hover:bg-brand-maroon/90 shadow-lg">
-                    <Save size={16} /> Save Product
+                <button
+                    type="submit"
+                    disabled={saving || uploading}
+                    className="flex items-center gap-2 px-6 py-2 bg-brand-maroon text-white text-sm font-bold uppercase tracking-widest rounded hover:bg-brand-maroon/90 shadow-lg disabled:opacity-60"
+                >
+                    <Save size={16} /> {saving ? "Saving..." : "Save Product"}
                 </button>
             </div>
         </form>

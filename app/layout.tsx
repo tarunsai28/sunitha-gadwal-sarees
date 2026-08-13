@@ -3,6 +3,11 @@ import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import JsonLd from "@/components/JsonLd";
+import { getStoredProducts } from "@/lib/blob-store";
+
+// Product data can change at any time via the seller dashboard, so pages
+// re-fetch it periodically rather than baking a stale copy in at build time.
+export const revalidate = 60;
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -33,18 +38,20 @@ export const metadata: Metadata = {
 
 import Providers from "@/components/Providers";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const initialProducts = await getStoredProducts();
+
   return (
     <html lang="en">
       <body
         className={`${playfair.variable} ${inter.variable} antialiased bg-brand-ivory text-brand-black font-sans`}
       >
         <JsonLd />
-        <Providers>
+        <Providers initialProducts={initialProducts}>
           {children}
         </Providers>
       </body>
