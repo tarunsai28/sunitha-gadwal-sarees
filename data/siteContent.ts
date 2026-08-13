@@ -15,7 +15,7 @@ export const siteContent = {
             pincode: "509125",
             full: "3-1-93/1 A, Ganta Veedhi, Gadwal, Jogulamba Gadwal Dist, Telangana, India - 509125",
         },
-        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=3-1-93/1+A,+Ganta+Veedhi,+Gadwal,+Telangana+509125",
+        googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=16.239833,77.792194",
     },
     socials: {
         instagram: "https://www.instagram.com/sunitha_gadwal_sarees/",
