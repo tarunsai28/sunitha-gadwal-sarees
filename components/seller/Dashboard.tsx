@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Product } from "@/data/products";
 import { useProducts } from "@/context/ProductContext";
 import ProductForm from "./ProductForm";
@@ -9,10 +10,13 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function SellerDashboard() {
+    const router = useRouter();
     // Use global state from context
     const { products, addProduct, updateProduct, deleteProduct } = useProducts();
     const [isEditing, setIsEditing] = useState(false);
     const [currentProduct, setCurrentProduct] = useState<Partial<Product> | undefined>(undefined);
+    const [error, setError] = useState("");
+    const [loggingOut, setLoggingOut] = useState(false);
 
     const handleAddNew = () => {
         setCurrentProduct(undefined);
@@ -24,22 +28,40 @@ export default function SellerDashboard() {
         setIsEditing(true);
     };
 
-    const handleDelete = (id: string) => {
-        if (confirm("Are you sure you want to delete this product?")) {
-            deleteProduct(id);
+    const handleDelete = async (id: string) => {
+        if (!confirm("Are you sure you want to delete this product?")) return;
+        setError("");
+        try {
+            await deleteProduct(id);
+        } catch (err) {
+            setError(err instanceof Error ? err.message : "Couldn't delete this product.");
         }
     };
 
-    const handleSave = (product: Product) => {
-        if (currentProduct && currentProduct.id) {
-            // Edit existing
-            updateProduct(product);
-        } else {
-            // Add new
-            const newProduct = { ...product, id: Date.now().toString(), isNew: true };
-            addProduct(newProduct);
+    const handleSave = async (product: Product) => {
+        setError("");
+        try {
+            if (currentProduct && currentProduct.id) {
+                // Edit existing
+                await updateProduct(product);
+            } else {
+                // Add new
+                const newProduct = { ...product, id: Date.now().toString(), isNew: true };
+                await addProduct(newProduct);
+            }
+            setIsEditing(false);
+        } catch (err) {
+            setError(err instanceof Error ? err.message : "Couldn't save this product.");
         }
-        setIsEditing(false);
+    };
+
+    const handleLogout = async () => {
+        setLoggingOut(true);
+        try {
+            await fetch("/api/seller/logout", { method: "POST" });
+        } finally {
+            router.refresh();
+        }
     };
 
     return (
@@ -53,14 +75,23 @@ export default function SellerDashboard() {
                     </div>
                     <div className="flex items-center gap-4">
                         <Link href="/" className="text-sm text-gray-500 hover:text-brand-black">View Website</Link>
-                        <button className="flex items-center gap-2 text-sm text-red-600 hover:text-red-700 font-medium">
-                            <LogOut size={16} /> Logout
+                        <button
+                            onClick={handleLogout}
+                            disabled={loggingOut}
+                            className="flex items-center gap-2 text-sm text-red-600 hover:text-red-700 font-medium disabled:opacity-60"
+                        >
+                            <LogOut size={16} /> {loggingOut ? "Logging out..." : "Logout"}
                         </button>
                     </div>
                 </div>
             </header>
 
             <main className="container mx-auto px-4 py-8">
+                {error && (
+                    <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg">
+                        {error}
+                    </div>
+                )}
                 {isEditing ? (
                     <div className="max-w-4xl mx-auto">
                         <ProductForm

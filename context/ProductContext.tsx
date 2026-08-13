@@ -1,54 +1,49 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode, useEffect } from "react";
-import { products as initialProducts, Product } from "@/data/products";
+import { createContext, useContext, useState, ReactNode } from "react";
+import { Product } from "@/data/products";
 
 interface ProductContextType {
     products: Product[];
-    addProduct: (product: Product) => void;
-    updateProduct: (product: Product) => void;
-    deleteProduct: (id: string) => void;
+    addProduct: (product: Product) => Promise<void>;
+    updateProduct: (product: Product) => Promise<void>;
+    deleteProduct: (id: string) => Promise<void>;
 }
 
 const ProductContext = createContext<ProductContextType | undefined>(undefined);
 
-export function ProductProvider({ children }: { children: ReactNode }) {
-    const [products, setProducts] = useState<Product[]>([]);
+async function mutate(body: object): Promise<Product[]> {
+    const res = await fetch("/api/products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+    });
+    if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || "Request failed");
+    }
+    return res.json();
+}
 
-    // Load initial data on mount
-    useEffect(() => {
-        const saved = localStorage.getItem('products');
-        if (saved) {
-            try {
-                setProducts(JSON.parse(saved));
-            } catch (e) {
-                console.error("Failed to parse products from local storage", e);
-                setProducts(initialProducts);
-            }
-        } else {
-            setProducts(initialProducts);
-        }
-    }, []);
+export function ProductProvider({
+    children,
+    initialProducts,
+}: {
+    children: ReactNode;
+    initialProducts: Product[];
+}) {
+    const [products, setProducts] = useState<Product[]>(initialProducts);
 
-    // Save to local storage whenever products change
-    useEffect(() => {
-        if (products.length > 0) {
-            localStorage.setItem('products', JSON.stringify(products));
-        }
-    }, [products]);
-
-    const addProduct = (product: Product) => {
-        // ID generation is now handled in Dashboard or passed in, but safeguards here are good
-        const newProduct = { ...product, id: product.id || Date.now().toString() };
-        setProducts(prev => [newProduct, ...prev]);
+    const addProduct = async (product: Product) => {
+        setProducts(await mutate({ action: "add", product }));
     };
 
-    const updateProduct = (updatedProduct: Product) => {
-        setProducts(prev => prev.map(p => p.id === updatedProduct.id ? updatedProduct : p));
+    const updateProduct = async (product: Product) => {
+        setProducts(await mutate({ action: "update", product }));
     };
 
-    const deleteProduct = (id: string) => {
-        setProducts(prev => prev.filter(p => p.id !== id));
+    const deleteProduct = async (id: string) => {
+        setProducts(await mutate({ action: "delete", id }));
     };
 
     return (

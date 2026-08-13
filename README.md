@@ -48,24 +48,9 @@ A premium, luxury-brand website for Sunitha Gadwal Saree House, built with Next.
 ## 📝 Managing Content
 
 ### Adding/Editing Products
-Open `data/products.ts` and add a new object to the `products` array:
+Products are managed through the **Seller Dashboard** at `/seller` — log in with your PIN, then add, edit, or delete sarees and upload photos directly. Changes save to Vercel Blob storage and appear on the live site for every visitor immediately.
 
-```typescript
-{
-    id: "19",
-    code: "SGSH-019",
-    title: "New Saree Title",
-    category: "Handloom",
-    color: "Red",
-    borderType: "Kutu",
-    weave: "Kuppadam",
-    material: "Silk",
-    description: "Description...",
-    tags: ["new", "red"],
-    images: ["/placeholder.jpg"], // Ensure image exists in public/ folder
-    isNew: true
-}
-```
+`data/products.ts` still exists as the *seed* catalog — it's only used the very first time, before anything has been saved through the dashboard.
 
 ### Updating Contact Info
 Edit `data/siteContent.ts` to update phone numbers, address, or social links globally.
@@ -76,7 +61,11 @@ The easiest way to deploy is using [Vercel](https://vercel.com/new).
 
 1.  Push code to GitHub.
 2.  Import project in Vercel.
-3.  Deploy.
+3.  In the project's **Storage** tab, create a **Blob** store and connect it to this project (include the *Development* environment if you want to use the dashboard locally too). This adds `BLOB_READ_WRITE_TOKEN` automatically.
+4.  In **Settings → Environment Variables**, add `SELLER_PIN` (the PIN you'll log in with at `/seller`) and `SELLER_SECRET` (a random string — see `.env.example` for how to generate one).
+5.  Deploy.
+
+For local development, copy `.env.example` to `.env.local` and fill in the same three values (run `vercel env pull .env.local` to pull `BLOB_READ_WRITE_TOKEN` once the store is connected).
 
 ## 📞 Support
 
