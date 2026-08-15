@@ -6,14 +6,14 @@ import { siteContent } from "@/data/siteContent";
 
 export default function CTABanner() {
     return (
-        <section className="py-20 bg-brand-maroon text-white text-center">
+        <section className="py-12 md:py-20 bg-brand-maroon text-white text-center">
             <div className="container mx-auto px-4">
-                <h2 className="font-serif text-3xl md:text-4xl mb-6">Tell Us the Occasion</h2>
-                <p className="text-white/80 max-w-xl mx-auto mb-10 text-lg">
+                <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl mb-3 md:mb-6">Tell Us the Occasion</h2>
+                <p className="text-white/80 max-w-xl mx-auto mb-6 md:mb-10 text-base md:text-lg">
                     Wedding, festival, or everyday elegance — tell us what you&apos;re draping for, and we&apos;ll help you find the saree for it.
                 </p>
 
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
                     <WhatsAppButton
                         variant="ghost"
                         className="bg-white text-brand-maroon hover:bg-brand-gold hover:text-brand-maroon border-none"

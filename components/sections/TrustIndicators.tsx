@@ -5,7 +5,7 @@ export default function TrustIndicators() {
     return (
         <section className="py-12 border-t border-brand-cream bg-brand-ivory">
             <div className="container mx-auto px-4">
-                <div className="flex flex-col md:flex-row justify-center items-center gap-12 text-center md:text-left">
+                <div className="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12 text-left md:text-left">
                     <div className="flex items-center gap-4">
                         <Globe className="text-brand-maroon" size={32} strokeWidth={1.5} />
                         <div>

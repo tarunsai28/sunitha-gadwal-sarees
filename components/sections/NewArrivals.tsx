@@ -11,12 +11,12 @@ export default function NewArrivals() {
     const newProducts = products.filter(p => p.isNew).slice(0, 8);
 
     return (
-        <section className="py-20 bg-white">
+        <section className="py-12 md:py-20 bg-white">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div className="flex flex-col md:flex-row justify-between items-end mb-6 md:mb-12 gap-6">
                     <div className="text-center md:text-left w-full md:w-auto">
                         <span className="text-brand-gold uppercase tracking-[0.2em] text-xs font-bold mb-2 block">Fresh from Looms</span>
-                        <h2 className="font-serif text-3xl md:text-4xl text-brand-black">New Arrivals</h2>
+                        <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-brand-black">New Arrivals</h2>
                     </div>
                     <Link
                         href="/collections"
@@ -32,7 +32,7 @@ export default function NewArrivals() {
                     ))}
                 </div>
 
-                <div className="mt-12 text-center md:hidden">
+                <div className="mt-8 text-center md:hidden">
                     <Link
                         href="/collections"
                         className="inline-block px-8 py-3 bg-brand-maroon text-white uppercase text-sm tracking-widest"

@@ -21,23 +21,26 @@ const features = [
 
 export default function SignatureCraft() {
     return (
-        <section className="py-20">
+        <section className="py-12 md:py-20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="bg-brand-ivory rounded-2xl p-8 md:p-12">
-                    <div className="text-center max-w-2xl mx-auto mb-16">
+                <div className="bg-brand-ivory rounded-2xl p-5 sm:p-8 md:p-12">
+                    <div className="text-center max-w-2xl mx-auto mb-8 md:mb-16">
                         <span className="text-brand-gold uppercase tracking-[0.2em] text-xs font-bold mb-3 block">Our Heritage</span>
-                        <h2 className="font-serif text-3xl md:text-4xl text-brand-black mb-6">Signature Craftsmanship</h2>
+                        <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-brand-black mb-4 md:mb-6">Signature Craftsmanship</h2>
                         <div className="interlock-divider w-24 mx-auto text-brand-gold/60"></div>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-12">
+                    <div className="flex flex-col gap-6 md:grid md:grid-cols-3 md:gap-12">
                         {features.map((feature, index) => (
-                            <div key={index} className="flex flex-col items-center text-center group">
-                                <div className="w-16 h-16 rounded-full bg-brand-cream flex items-center justify-center mb-6 text-brand-maroon group-hover:bg-brand-maroon group-hover:text-white transition-all duration-500">
-                                    <feature.icon size={32} strokeWidth={1.5} />
+                            <div key={index} className="flex flex-row items-start text-left gap-4 md:flex-col md:items-center md:text-center group">
+                                <div className="w-11 h-11 sm:w-16 sm:h-16 shrink-0 rounded-full bg-brand-cream flex items-center justify-center md:mb-6 text-brand-maroon group-hover:bg-brand-maroon group-hover:text-white transition-all duration-500">
+                                    <feature.icon size={22} className="sm:hidden" strokeWidth={1.5} />
+                                    <feature.icon size={32} className="hidden sm:block" strokeWidth={1.5} />
                                 </div>
-                                <h3 className="font-serif text-xl text-brand-black mb-4">{feature.title}</h3>
-                                <p className="text-brand-charcoal text-sm leading-relaxed max-w-xs">{feature.description}</p>
+                                <div>
+                                    <h3 className="font-serif text-base sm:text-xl text-brand-black mb-1 md:mb-4">{feature.title}</h3>
+                                    <p className="text-brand-charcoal text-sm leading-relaxed md:max-w-xs">{feature.description}</p>
+                                </div>
                             </div>
                         ))}
                     </div>
