@@ -101,13 +101,24 @@ export default function Header({ theme = "transparent-dark" }: HeaderProps) {
                 </div>
             </div>
 
-            {/* Mobile Menu */}
+            {/* Mobile Menu — a self-contained full-screen overlay with its own
+                close control, so it never depends on the header underneath
+                staying at a predictable height. */}
             <div
-                className={`md:hidden fixed inset-0 z-40 bg-brand-ivory transform transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+                className={`md:hidden fixed inset-0 z-[60] bg-brand-ivory overflow-y-auto transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full pointer-events-none"
                     }`}
-                style={{ top: "60px" }} // Below header approx
             >
-                <nav className="flex flex-col items-center justify-center p-8 space-y-8 h-full">
+                <div className="flex items-center justify-between px-4 py-4 border-b border-brand-cream">
+                    <span className="font-serif text-2xl font-bold text-brand-maroon">SGSH</span>
+                    <button
+                        className="p-2 text-brand-black"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        aria-label="Close menu"
+                    >
+                        <X />
+                    </button>
+                </div>
+                <nav className="flex flex-col items-center justify-center gap-8 px-8 py-16">
                     {navLinks.map((link) => (
                         <Link
                             key={link.name}

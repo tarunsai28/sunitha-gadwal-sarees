@@ -5,12 +5,13 @@ import { Instagram, Facebook, Youtube, MapPin, Phone, Mail, Clock } from "lucide
 
 export default function Footer() {
     return (
-        <footer className="bg-brand-black text-brand-cream py-16">
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <footer className="bg-brand-black text-brand-cream">
+            <div className="interlock-divider w-full text-brand-gold/40"></div>
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 divide-y divide-white/10 md:divide-y-0">
 
                     {/* Brand Column */}
-                    <div className="space-y-6">
+                    <div className="space-y-4 md:space-y-6 pb-8 md:pb-0">
                         <h2 className="font-serif text-2xl font-bold text-white tracking-wide">
                             {siteContent.brandName}
                         </h2>
@@ -31,7 +32,7 @@ export default function Footer() {
                     </div>
 
                     {/* Quick Links */}
-                    <div className="space-y-6">
+                    <div className="space-y-4 md:space-y-6 py-8 md:py-0">
                         <h3 className="font-serif text-lg text-brand-gold tracking-widest uppercase">Explore</h3>
                         <ul className="space-y-3 text-sm text-gray-400">
                             <li><Link href="/" className="hover:text-white transition-colors">Home</Link></li>
@@ -43,7 +44,7 @@ export default function Footer() {
                     </div>
 
                     {/* Contact Details */}
-                    <div className="space-y-6">
+                    <div className="space-y-4 md:space-y-6 py-8 md:py-0">
                         <h3 className="font-serif text-lg text-brand-gold tracking-widest uppercase">Contact</h3>
                         <ul className="space-y-4 text-sm text-gray-400">
                             <li className="flex items-start gap-3">
@@ -69,15 +70,15 @@ export default function Footer() {
                         </ul>
                     </div>
 
-                    {/* Legal / Map Preview (Optional) */}
-                    <div className="space-y-6">
+                    {/* Legal */}
+                    <div className="space-y-4 md:space-y-6 pt-8 md:pt-0">
                         <h3 className="font-serif text-lg text-brand-gold tracking-widest uppercase">Legal</h3>
                         <ul className="space-y-3 text-sm text-gray-400">
                             <li><Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
                             <li><Link href="/terms-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link></li>
                             <li><Link href="/shipping-policy" className="hover:text-white transition-colors">Shipping Policy</Link></li>
                         </ul>
-                        <p className="text-xs text-gray-500 pt-8">
+                        <p className="text-xs text-gray-500 pt-4 md:pt-8">
                             © {new Date().getFullYear()} {siteContent.brandName}. All rights reserved.
                         </p>
                     </div>
