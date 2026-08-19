@@ -97,7 +97,7 @@ export default function ContactPage() {
                         {/* Map or Second Column - Visual */}
                         <div className="relative h-[500px] lg:h-auto bg-brand-cream/20">
                             <iframe
-                                src="https://www.google.com/maps?q=16.239833,77.792194&z=18&output=embed"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3466.5136202824424!2d77.78961867460339!3d16.239848734848792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc9fdbb8c76c10b%3A0x4ae8c9370bfda749!2sSunitha%20Gadwal%20Saree%20House!5e1!3m2!1sen!2sus!4v1787112780387!5m2!1sen!2sus"
                                 width="100%"
                                 height="100%"
                                 style={{ border: 0 }}
