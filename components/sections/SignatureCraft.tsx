@@ -30,10 +30,14 @@ export default function SignatureCraft() {
                         <div className="interlock-divider w-24 mx-auto text-brand-gold/60"></div>
                     </div>
 
-                    <div className="flex flex-col gap-6 md:grid md:grid-cols-3 md:gap-12">
+                    <div className="flex flex-col md:grid md:grid-cols-3 md:gap-12">
                         {features.map((feature, index) => (
-                            <div key={index} className="flex flex-row items-start text-left gap-4 md:flex-col md:items-center md:text-center group">
-                                <div className="w-11 h-11 sm:w-16 sm:h-16 shrink-0 rounded-full bg-brand-cream flex items-center justify-center md:mb-6 text-brand-maroon group-hover:bg-brand-maroon group-hover:text-white transition-all duration-500">
+                            <div
+                                key={index}
+                                className={`flex flex-row items-start text-left gap-4 py-5 md:py-0 md:flex-col md:items-center md:text-center group ${index > 0 ? "border-t border-brand-gold/15 md:border-t-0" : ""
+                                    }`}
+                            >
+                                <div className="w-11 h-11 sm:w-16 sm:h-16 shrink-0 rounded-full bg-brand-cream ring-4 ring-brand-gold/15 flex items-center justify-center md:mb-6 text-brand-maroon group-hover:bg-brand-maroon group-hover:text-white transition-all duration-500">
                                     <feature.icon size={22} className="sm:hidden" strokeWidth={1.5} />
                                     <feature.icon size={32} className="hidden sm:block" strokeWidth={1.5} />
                                 </div>
