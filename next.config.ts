@@ -8,6 +8,10 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Lets the dev server be reached through a tunnel (e.g. localtunnel) for
+  // mobile preview testing. Only affects `next dev` - has no effect on the
+  // production build.
+  allowedDevOrigins: ["*.loca.lt"],
   async headers() {
     return [
       {

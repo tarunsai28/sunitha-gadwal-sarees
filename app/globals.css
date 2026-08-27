@@ -43,3 +43,10 @@ body.mobile-menu-open .whatsapp-fab {
   opacity: 0;
   pointer-events: none;
 }
+
+/* Lock the page in place while the mobile menu is open, so scrolling
+   drags the menu's own content instead of the page underneath it
+   (which was letting the footer peek through). */
+body.mobile-menu-open {
+  overflow: hidden;
+}
