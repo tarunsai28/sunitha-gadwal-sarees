@@ -23,7 +23,7 @@ export default function SignatureCraft() {
     return (
         <section className="py-12 md:py-20">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="bg-brand-ivory rounded-2xl p-5 sm:p-8 md:p-12">
+                <div className="bg-brand-ivory rounded-lg p-5 sm:p-8 md:p-12">
                     <div className="text-center max-w-2xl mx-auto mb-8 md:mb-16">
                         <span className="text-brand-gold uppercase tracking-[0.2em] text-xs font-bold mb-3 block">Our Heritage</span>
                         <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl text-brand-black mb-4 md:mb-6">Signature Craftsmanship</h2>

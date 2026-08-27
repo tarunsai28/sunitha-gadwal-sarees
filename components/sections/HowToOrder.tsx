@@ -39,7 +39,7 @@ export default function HowToOrder() {
                     <div className="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-brand-gold/30 -z-10"></div>
 
                     {steps.map((step, index) => (
-                        <div key={index} className="flex flex-row items-center gap-4 text-left bg-white p-4 md:flex-col md:items-center md:text-center md:p-8 border-l-[3px] border-y border-r border-brand-gold/30 border-y-brand-cream border-r-brand-cream md:border md:border-brand-cream relative shadow-sm hover:shadow-md transition-shadow">
+                        <div key={index} className="flex flex-row items-center gap-4 text-left bg-white p-4 md:flex-col md:items-center md:text-center md:p-8 border-l-[3px] border-y border-r border-brand-gold/30 border-y-brand-cream border-r-brand-cream md:border md:border-brand-cream relative shadow-sm hover:shadow-md transition-shadow rounded-lg">
                             <div className="w-10 h-10 md:w-12 md:h-12 shrink-0 bg-brand-maroon text-white rounded-full flex items-center justify-center text-base md:text-lg font-bold font-serif ring-4 ring-brand-gold/20 md:mx-auto md:mb-6 relative z-10">
                                 {step.number}
                             </div>

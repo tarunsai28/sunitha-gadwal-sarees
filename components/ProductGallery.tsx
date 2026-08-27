@@ -16,7 +16,7 @@ export default function ProductGallery({ images, title }: ProductGalleryProps) {
     return (
         <div className="flex flex-col gap-4">
             {/* Main Image */}
-            <div className="relative aspect-[3/4] w-full overflow-hidden bg-brand-cream/20 border border-brand-cream rounded-sm">
+            <div className="relative aspect-[3/4] w-full overflow-hidden bg-brand-cream/20 border border-brand-cream rounded-lg">
                 <Image
                     src={selectedImage}
                     alt={title}
