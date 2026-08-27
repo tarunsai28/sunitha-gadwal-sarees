@@ -48,10 +48,10 @@ export default function WhatsAppButton({
     const baseStyles = "inline-flex items-center justify-center transition-all duration-300 font-medium tracking-wide";
 
     const variants = {
-        primary: "bg-brand-maroon/90 hover:bg-brand-maroon text-white px-6 py-3 rounded-none uppercase text-sm shadow-md hover:shadow-lg gap-2",
+        primary: "bg-brand-maroon/90 hover:bg-brand-maroon text-white px-6 py-3 rounded-lg uppercase text-sm shadow-md hover:shadow-lg gap-2",
         floating: "fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-xl hover:shadow-2xl animate-in fade-in slide-in-from-bottom-4",
         text: "text-brand-maroon hover:text-brand-maroon/80 underline underline-offset-4 gap-1",
-        ghost: "bg-transparent border border-brand-maroon text-brand-maroon hover:bg-brand-maroon hover:text-white px-6 py-3 rounded-none uppercase text-sm transition-colors duration-300 gap-2"
+        ghost: "bg-transparent border border-brand-maroon text-brand-maroon hover:bg-brand-maroon hover:text-white px-6 py-3 rounded-lg uppercase text-sm transition-colors duration-300 gap-2"
     };
 
     if (variant === "floating") {

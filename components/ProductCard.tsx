@@ -10,7 +10,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
     return (
-        <div className="group relative flex flex-col bg-white border border-brand-cream hover:border-brand-gold/30 transition-all duration-300 hover:shadow-lg">
+        <div className="group relative flex flex-col bg-white border border-brand-cream hover:border-brand-gold/30 transition-all duration-300 hover:shadow-lg rounded-lg overflow-hidden">
             <div className="relative aspect-[3/4] overflow-hidden bg-brand-cream/20">
                 <Image
                     src={product.images[0]}
@@ -20,7 +20,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                     sizes="(max-width: 768px) 50vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 {product.isNew && (
-                    <span className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-brand-maroon text-white text-[8px] sm:text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 sm:px-3 sm:py-1">
+                    <span className="absolute top-2 left-2 sm:top-4 sm:left-4 bg-brand-maroon text-white text-[8px] sm:text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 sm:px-3 sm:py-1 rounded">
                         New Arrival
                     </span>
                 )}

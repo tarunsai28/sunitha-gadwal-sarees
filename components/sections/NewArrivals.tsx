@@ -35,7 +35,7 @@ export default function NewArrivals() {
                 <div className="mt-8 text-center md:hidden">
                     <Link
                         href="/collections"
-                        className="inline-block px-8 py-3 bg-brand-maroon text-white uppercase text-sm tracking-widest"
+                        className="inline-block px-8 py-3 bg-brand-maroon text-white uppercase text-sm tracking-widest rounded-lg"
                     >
                         View All Collections
                     </Link>

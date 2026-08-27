@@ -71,7 +71,7 @@ export default function CollectionsClient() {
             <div className="flex-1">
 
                 {/* Toolbar */}
-                <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8 bg-brand-cream/20 p-4 rounded-sm">
+                <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-8 bg-brand-cream/20 p-4 rounded-lg">
                     {/* Search */}
                     <div className="relative w-full md:w-64">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
@@ -80,7 +80,7 @@ export default function CollectionsClient() {
                             placeholder="Search code or name..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full pl-9 pr-4 py-2 text-sm border border-brand-cream focus:border-brand-maroon outline-none bg-white"
+                            className="w-full pl-9 pr-4 py-2 text-sm border border-brand-cream focus:border-brand-maroon outline-none bg-white rounded-lg"
                         />
                     </div>
 
@@ -154,7 +154,7 @@ export default function CollectionsClient() {
                                 <div className="space-y-2">
                                     <button
                                         onClick={() => { setSelectedCategory(null); setIsMobileFiltersOpen(false); }}
-                                        className={cn("block w-full text-left p-2 rounded", !selectedCategory ? "bg-brand-cream" : "")}
+                                        className={cn("block w-full text-left p-2 rounded-lg", !selectedCategory ? "bg-brand-cream" : "")}
                                     >
                                         All Categories
                                     </button>
@@ -162,7 +162,7 @@ export default function CollectionsClient() {
                                         <button
                                             key={cat}
                                             onClick={() => { setSelectedCategory(cat === selectedCategory ? null : cat); setIsMobileFiltersOpen(false); }}
-                                            className={cn("block w-full text-left p-2 rounded", selectedCategory === cat ? "bg-brand-cream" : "")}
+                                            className={cn("block w-full text-left p-2 rounded-lg", selectedCategory === cat ? "bg-brand-cream" : "")}
                                         >
                                             {cat}
                                         </button>

@@ -94,7 +94,7 @@ export default function ProductPage({ params }: { params: { code: string } }) {
                         </div>
 
                         {/* Product Details Table */}
-                        <div className="bg-white border border-brand-cream p-6 rounded-sm mb-8">
+                        <div className="bg-white border border-brand-cream rounded-lg p-6 mb-8">
                             <h3 className="font-serif text-lg font-bold mb-4">Product Details</h3>
                             <div className="space-y-3 text-sm">
                                 <div className="flex justify-between border-b border-dashed border-gray-200 pb-2">
@@ -132,13 +132,13 @@ export default function ProductPage({ params }: { params: { code: string } }) {
                             <div className="grid grid-cols-2 gap-4">
                                 <a
                                     href={`tel:${siteContent.contact.phones[0]}`}
-                                    className="flex items-center justify-center gap-2 px-6 py-3 border border-brand-black text-brand-black uppercase text-sm tracking-widest hover:bg-brand-black hover:text-white transition-all"
+                                    className="flex items-center justify-center gap-2 px-6 py-3 border border-brand-black text-brand-black uppercase text-sm tracking-widest hover:bg-brand-black hover:text-white transition-all rounded-lg"
                                 >
                                     <Phone size={18} /> Call Us
                                 </a>
                                 <a
                                     href={`mailto:${siteContent.contact.email}`}
-                                    className="flex items-center justify-center gap-2 px-6 py-3 border border-brand-black text-brand-black uppercase text-sm tracking-widest hover:bg-brand-black hover:text-white transition-all"
+                                    className="flex items-center justify-center gap-2 px-6 py-3 border border-brand-black text-brand-black uppercase text-sm tracking-widest hover:bg-brand-black hover:text-white transition-all rounded-lg"
                                 >
                                     <Mail size={18} /> Email Us
                                 </a>

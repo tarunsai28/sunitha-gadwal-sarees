@@ -21,14 +21,14 @@ export default function CTABanner() {
 
                     <a
                         href={`tel:${siteContent.contact.phones[0]}`}
-                        className="inline-flex items-center gap-2 px-6 py-3 border border-white/30 text-white uppercase text-sm tracking-widest hover:bg-white hover:text-brand-maroon transition-all"
+                        className="inline-flex items-center gap-2 px-6 py-3 border border-white/30 text-white uppercase text-sm tracking-widest hover:bg-white hover:text-brand-maroon transition-all rounded-lg"
                     >
                         <Phone size={18} /> Call Us
                     </a>
 
                     <a
                         href={`mailto:${siteContent.contact.email}`}
-                        className="inline-flex items-center gap-2 px-6 py-3 border border-white/30 text-white uppercase text-sm tracking-widest hover:bg-white hover:text-brand-maroon transition-all"
+                        className="inline-flex items-center gap-2 px-6 py-3 border border-white/30 text-white uppercase text-sm tracking-widest hover:bg-white hover:text-brand-maroon transition-all rounded-lg"
                     >
                         <Mail size={18} /> Email Us
                     </a>

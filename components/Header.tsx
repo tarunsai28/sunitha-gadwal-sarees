@@ -26,7 +26,31 @@ export default function Header({ theme = "transparent-dark" }: HeaderProps) {
 
     useEffect(() => {
         document.body.classList.toggle("mobile-menu-open", isMobileMenuOpen);
-        return () => document.body.classList.remove("mobile-menu-open");
+
+        if (isMobileMenuOpen) {
+            // Pin the page in place while the menu is open. overflow:hidden
+            // alone doesn't reliably block scroll on mobile browsers (the
+            // scroll root is <html>, and iOS Safari ignores it outright) -
+            // this is what actually stops the page scrolling behind the
+            // menu and letting the footer show through.
+            const scrollY = window.scrollY;
+            document.body.style.position = "fixed";
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.width = "100%";
+        } else {
+            const scrollY = document.body.style.top;
+            document.body.style.position = "";
+            document.body.style.top = "";
+            document.body.style.width = "";
+            if (scrollY) {
+                window.scrollTo(0, parseInt(scrollY, 10) * -1);
+            }
+        }
+
+        // No cleanup here: the if/else above already applies or releases the
+        // lock on every change. A cleanup fn would run before the next
+        // effect body on each transition and wipe body.style.top before the
+        // close-branch gets to read it back for scroll restoration.
     }, [isMobileMenuOpen]);
 
     const navLinks = [
