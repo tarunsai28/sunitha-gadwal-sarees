@@ -6,7 +6,7 @@ import { Award } from "lucide-react";
 
 export default function HeroSection() {
     return (
-        <section className="relative min-h-[90vh] flex flex-col lg:flex-row bg-brand-ivory overflow-hidden">
+        <section className="relative min-h-[90vh] pt-20 flex flex-col lg:flex-row bg-brand-ivory overflow-hidden">
             {/* Text Content - Left Side */}
             <div className="w-full lg:w-1/2 flex items-center justify-center p-6 md:p-12 lg:p-16 xl:p-24 relative order-2 lg:order-1">
                 {/* Background Pattern */}
@@ -62,7 +62,7 @@ export default function HeroSection() {
 
                 {/* Floating Seal 'Unique Thing' */}
                 <div className="absolute -bottom-6 left-6 lg:bottom-12 lg:-left-12 z-20 block animate-spin-slow">
-                    <div className="relative w-24 h-24 lg:w-32 lg:h-32 bg-brand-gold rounded-full flex items-center justify-center shadow-lg border-4 border-white text-brand-maroon">
+                    <div className="relative w-24 h-24 lg:w-32 lg:h-32 bg-brand-gold-bright rounded-full flex items-center justify-center shadow-lg border-4 border-white text-brand-maroon-deep">
                         <svg className="absolute w-full h-full p-2 animate-spin-slow" viewBox="0 0 100 100" style={{ animationDuration: '15s' }}>
                             <path id="curve" d="M 50 50 m -37 0 a 37 37 0 1 1 74 0 a 37 37 0 1 1 -74 0" fill="transparent" />
                             <text className="text-[10.5px] font-bold uppercase tracking-widest" fill="currentColor">

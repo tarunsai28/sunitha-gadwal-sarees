@@ -16,7 +16,7 @@ export default function CTABanner() {
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
                     <WhatsAppButton
                         variant="ghost"
-                        className="bg-white text-brand-maroon hover:bg-brand-gold hover:text-brand-maroon border-none"
+                        className="bg-white text-brand-maroon hover:bg-brand-gold-bright hover:text-brand-maroon-deep border-none"
                     />
 
                     <a

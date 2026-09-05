@@ -12,12 +12,12 @@ export default function AboutPage() {
             <Header theme="transparent-light" />
 
             {/* Hero */}
-            <div className="relative pt-24 pb-10 md:pt-32 md:pb-20 bg-brand-black text-white text-center px-4 overflow-hidden">
-                <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-maroon via-brand-black to-brand-black"></div>
+            <div className="relative pt-24 pb-10 md:pt-32 md:pb-20 bg-brand-maroon-deep text-white text-center px-4 overflow-hidden">
+                <div className="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-maroon via-brand-maroon-deep to-brand-maroon-deep"></div>
                 <div className="relative z-10 max-w-4xl mx-auto">
-                    <span className="text-brand-gold uppercase tracking-[0.2em] text-xs font-bold mb-3 md:mb-4 block animate-fade-in">Our Story</span>
+                    <span className="text-brand-gold-bright uppercase tracking-[0.2em] text-xs font-bold mb-3 md:mb-4 block animate-fade-in">Our Story</span>
                     <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 md:mb-6">Weaving Heritage Since Generations</h1>
-                    <p className="text-gray-300 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
+                    <p className="text-brand-cream/80 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
                         Every saree we sell has passed through the same hands that wove it — no factory, no middleman, just {siteContent.owner} and our family of master weavers.
                     </p>
                 </div>
