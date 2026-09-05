@@ -31,10 +31,10 @@ export default function ContactPage() {
                     <div className="grid lg:grid-cols-2">
 
                         {/* Contact Information Column */}
-                        <div className="p-6 sm:p-8 md:p-12 lg:p-16 bg-brand-black text-brand-ivory relative overflow-hidden">
+                        <div className="p-6 sm:p-8 md:p-12 lg:p-16 bg-brand-maroon-deep text-brand-ivory relative overflow-hidden">
                             {/* Decorative background elements */}
-                            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-maroon/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                            <div className="absolute bottom-0 left-0 w-48 h-48 bg-brand-gold/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2"></div>
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-maroon/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                            <div className="absolute bottom-0 left-0 w-48 h-48 bg-brand-gold-bright/10 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2"></div>
 
                             <div className="relative z-10 space-y-6 md:space-y-12">
                                 <div>
@@ -44,8 +44,8 @@ export default function ContactPage() {
 
                                 <div className="space-y-6 md:space-y-10">
                                     <div className="flex gap-4 md:gap-6 group">
-                                        <div className="w-10 h-10 md:w-12 md:h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-brand-gold/10 group-hover:border-brand-gold/30 transition-all duration-300">
-                                            <MapPin size={20} className="text-brand-gold" />
+                                        <div className="w-10 h-10 md:w-12 md:h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-brand-gold-bright/10 group-hover:border-brand-gold-bright/30 transition-all duration-300">
+                                            <MapPin size={20} className="text-brand-gold-bright" />
                                         </div>
                                         <div>
                                             <h3 className="font-bold text-white mb-1 md:mb-2 tracking-wide uppercase text-xs">Address</h3>
@@ -54,14 +54,14 @@ export default function ContactPage() {
                                     </div>
 
                                     <div className="flex gap-4 md:gap-6 group">
-                                        <div className="w-10 h-10 md:w-12 md:h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-brand-gold/10 group-hover:border-brand-gold/30 transition-all duration-300">
-                                            <Phone size={20} className="text-brand-gold" />
+                                        <div className="w-10 h-10 md:w-12 md:h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-brand-gold-bright/10 group-hover:border-brand-gold-bright/30 transition-all duration-300">
+                                            <Phone size={20} className="text-brand-gold-bright" />
                                         </div>
                                         <div>
                                             <h3 className="font-bold text-white mb-1 md:mb-2 tracking-wide uppercase text-xs">Call or Text</h3>
                                             <div className="flex flex-col gap-1">
                                                 {siteContent.contact.phones.map(phone => (
-                                                    <a key={phone} href={`tel:${phone}`} className="text-brand-cream/80 hover:text-brand-gold transition-colors font-light decoration-brand-gold/30 underline-offset-4 hover:underline text-sm md:text-base">
+                                                    <a key={phone} href={`tel:${phone}`} className="text-brand-cream/80 hover:text-brand-gold-bright transition-colors font-light decoration-brand-gold/30 underline-offset-4 hover:underline text-sm md:text-base">
                                                         {phone}
                                                     </a>
                                                 ))}
@@ -70,12 +70,12 @@ export default function ContactPage() {
                                     </div>
 
                                     <div className="flex gap-4 md:gap-6 group">
-                                        <div className="w-10 h-10 md:w-12 md:h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-brand-gold/10 group-hover:border-brand-gold/30 transition-all duration-300">
-                                            <Mail size={20} className="text-brand-gold" />
+                                        <div className="w-10 h-10 md:w-12 md:h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-brand-gold-bright/10 group-hover:border-brand-gold-bright/30 transition-all duration-300">
+                                            <Mail size={20} className="text-brand-gold-bright" />
                                         </div>
                                         <div>
                                             <h3 className="font-bold text-white mb-1 md:mb-2 tracking-wide uppercase text-xs">Email Us</h3>
-                                            <a href={`mailto:${siteContent.contact.email}`} className="text-brand-cream/80 hover:text-brand-gold transition-colors font-light text-sm md:text-base">
+                                            <a href={`mailto:${siteContent.contact.email}`} className="text-brand-cream/80 hover:text-brand-gold-bright transition-colors font-light text-sm md:text-base">
                                                 {siteContent.contact.email}
                                             </a>
                                         </div>
@@ -84,8 +84,8 @@ export default function ContactPage() {
                                     {/* Shown here only on the smallest screens — sm+ already sees
                                         this via the floating card on the map. */}
                                     <div className="flex gap-4 group sm:hidden">
-                                        <div className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-brand-gold/10 group-hover:border-brand-gold/30 transition-all duration-300">
-                                            <Clock size={20} className="text-brand-gold" />
+                                        <div className="w-10 h-10 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-brand-gold-bright/10 group-hover:border-brand-gold-bright/30 transition-all duration-300">
+                                            <Clock size={20} className="text-brand-gold-bright" />
                                         </div>
                                         <div>
                                             <h3 className="font-bold text-white mb-1 tracking-wide uppercase text-xs">Opening Hours</h3>

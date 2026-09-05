@@ -3,18 +3,21 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { siteContent } from "@/data/siteContent";
-import { Menu, X, ShoppingBag } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { Menu, X } from "lucide-react";
 import WhatsAppButton from "./WhatsAppButton";
+import Logo from "./Logo";
 
 interface HeaderProps {
+    /** @deprecated The header now always has a solid background, so this no
+     * longer changes anything. Kept so existing call sites don't break. */
     theme?: "transparent-dark" | "transparent-light";
 }
 
-export default function Header({ theme = "transparent-dark" }: HeaderProps) {
+export default function Header({}: HeaderProps) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -56,49 +59,41 @@ export default function Header({ theme = "transparent-dark" }: HeaderProps) {
     const navLinks = [
         { name: "Home", href: "/" },
         { name: "Collections", href: "/collections" },
+        { name: "Journal", href: "/blog" },
         { name: "About", href: "/about" },
         { name: "Contact", href: "/contact" },
     ];
 
-    // Determine text color based on scroll state and theme
-    // Scrolled: Always dark text (on ivory bg)
-    // Not Scrolled: Dark text if transparent-dark (default), Light text if transparent-light
-    const isLightText = !isScrolled && theme === "transparent-light";
-
     return (
         <header
-            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled
-                ? "bg-brand-ivory/95 backdrop-blur-md shadow-sm py-2"
-                : "bg-transparent py-4"
+            className={`fixed top-0 left-0 w-full z-50 bg-brand-ivory/95 backdrop-blur-md border-b border-brand-cream transition-all duration-300 ${isScrolled ? "shadow-md py-2" : "shadow-sm py-4"
                 }`}
         >
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between">
                     {/* Logo */}
-                    <Link href="/" className="group">
-                        <h1 className={`font-serif text-2xl md:text-3xl font-bold tracking-tight transition-colors ${isLightText ? "text-white drop-shadow-md" : (isScrolled ? "text-brand-maroon" : "text-brand-maroon drop-shadow-sm")
-                            }`}>
-                            SGSH
-                        </h1>
-                        <span className="text-[10px] tracking-widest uppercase block -mt-1 text-brand-gold">
-                            Gadwal Sarees
-                        </span>
+                    <Link href="/" aria-label="Sunitha Gadwal Saree House — home">
+                        <Logo variant="horizontal" tone="dark" priority />
                     </Link>
 
                     {/* Desktop Nav */}
                     <nav className="hidden md:flex items-center space-x-8">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className={`font-serif text-sm uppercase tracking-widest transition-colors font-medium relative group ${isLightText ? "text-white/90 hover:text-white" : "text-brand-black hover:text-brand-maroon"
-                                    }`}
-                            >
-                                {link.name}
-                                <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-all group-hover:w-full ${isLightText ? "bg-white" : "bg-brand-maroon"
-                                    }`} />
-                            </Link>
-                        ))}
+                        {navLinks.map((link) => {
+                            const isActive = link.href === "/" ? pathname === "/" : pathname?.startsWith(link.href);
+                            return (
+                                <Link
+                                    key={link.name}
+                                    href={link.href}
+                                    aria-current={isActive ? "page" : undefined}
+                                    className={`font-serif text-sm uppercase tracking-widest transition-colors font-medium relative group ${isActive ? "text-brand-maroon" : "text-brand-black hover:text-brand-maroon"
+                                        }`}
+                                >
+                                    {link.name}
+                                    <span className={`absolute -bottom-1 left-0 h-0.5 bg-brand-maroon transition-all ${isActive ? "w-full" : "w-0 group-hover:w-full"
+                                        }`} />
+                                </Link>
+                            );
+                        })}
                     </nav>
 
                     {/* CTA & Mobile Menu Toggle */}
@@ -107,15 +102,12 @@ export default function Header({ theme = "transparent-dark" }: HeaderProps) {
                             <WhatsAppButton
                                 variant="primary"
                                 label="Inquire"
-                                className={`!py-2 !px-6 !text-xs border-none shadow-md ${isLightText
-                                    ? "!bg-black !text-white hover:!bg-gray-900"
-                                    : "!bg-brand-maroon !text-white hover:!bg-brand-maroon/90"
-                                    }`}
+                                className="!py-2 !px-6 !text-xs border-none shadow-md !bg-brand-maroon !text-white hover:!bg-brand-maroon/90"
                             />
                         </div>
 
                         <button
-                            className={`md:hidden p-2 ${isLightText ? "text-white" : "text-brand-black"}`}
+                            className="md:hidden p-2 text-brand-black"
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             aria-label="Toggle menu"
                         >
@@ -133,7 +125,8 @@ export default function Header({ theme = "transparent-dark" }: HeaderProps) {
                     }`}
             >
                 <div className="flex items-center justify-between px-4 py-4 border-b border-brand-cream">
-                    <span className="font-serif text-2xl font-bold text-brand-maroon">SGSH</span>
+                    <Logo variant="horizontal" tone="dark" />
+
                     <button
                         className="p-2 text-brand-black"
                         onClick={() => setIsMobileMenuOpen(false)}
@@ -143,16 +136,20 @@ export default function Header({ theme = "transparent-dark" }: HeaderProps) {
                     </button>
                 </div>
                 <nav className="flex flex-col items-center justify-center gap-8 px-8 py-16">
-                    {navLinks.map((link) => (
-                        <Link
-                            key={link.name}
-                            href={link.href}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="text-2xl font-serif text-brand-black hover:text-brand-maroon transition-colors"
-                        >
-                            {link.name}
-                        </Link>
-                    ))}
+                    {navLinks.map((link) => {
+                        const isActive = link.href === "/" ? pathname === "/" : pathname?.startsWith(link.href);
+                        return (
+                            <Link
+                                key={link.name}
+                                href={link.href}
+                                onClick={() => setIsMobileMenuOpen(false)}
+                                aria-current={isActive ? "page" : undefined}
+                                className={`text-2xl font-serif transition-colors ${isActive ? "text-brand-maroon" : "text-brand-black hover:text-brand-maroon"}`}
+                            >
+                                {link.name}
+                            </Link>
+                        );
+                    })}
                     <WhatsAppButton variant="primary" label="Get Price on WhatsApp" />
                 </nav>
             </div>

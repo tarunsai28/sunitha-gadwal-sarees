@@ -2,12 +2,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-ivory: #F8F4EC;
-  --color-brand-cream: #F0EAD9;
-  --color-brand-maroon: #1F4E49;
-  --color-brand-gold: #A66A12;
-  --color-brand-black: #14211E;
-  --color-brand-charcoal: #333333;
+  /* Ivory · black type · red action.
+     Ivory carries the page; black does the reading and the darkest
+     surfaces (footer, dark heroes); red is the accent — buttons, hero
+     bands, headings; gold is the fine-line jewel — antique on ivory,
+     luminous on black. The `maroon` tokens keep their name for
+     compatibility but now hold the red / near-black values. */
+  --color-brand-ivory: #F6F1E4;       /* warm ivory — the page ground */
+  --color-brand-cream: #EEE2C8;       /* golden cream — soft panels, borders */
+  --color-brand-maroon: #6E1620;      /* dark red (matches the monogram) — buttons, hero bands, accents */
+  --color-brand-maroon-deep: #15110F; /* near-black — footer, dark heroes */
+  --color-brand-gold: #A9781F;        /* antique gold — labels on ivory */
+  --color-brand-gold-bright: #D8AC50; /* luminous gold — accents on black grounds */
+  --color-brand-black: #241C17;       /* warm near-black — body copy */
+  --color-brand-charcoal: #4A3B33;    /* warm stone — secondary text */
 
   --font-serif: var(--font-playfair), serif;
   --font-sans: var(--font-inter), sans-serif;

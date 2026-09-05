@@ -12,6 +12,12 @@ const nextConfig: NextConfig = {
   // mobile preview testing. Only affects `next dev` - has no effect on the
   // production build.
   allowedDevOrigins: ["*.loca.lt"],
+  images: {
+    // Next 16 defaults to serving only quality=75. The logo mark is fine
+    // detail shrunk to header/footer size, so it needs a higher quality
+    // to stay crisp instead of being coerced down to 75.
+    qualities: [75, 95],
+  },
   async headers() {
     return [
       {
