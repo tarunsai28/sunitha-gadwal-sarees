@@ -65,11 +65,12 @@ export default function Header({}: HeaderProps) {
     ];
 
     return (
-        <header
-            className={`fixed top-0 left-0 w-full z-50 bg-brand-ivory/95 backdrop-blur-md border-b border-brand-cream transition-all duration-300 ${isScrolled ? "shadow-md py-2" : "shadow-sm py-4"
-                }`}
-        >
-            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <>
+            <header
+                className={`fixed top-0 left-0 w-full z-50 bg-brand-ivory/95 backdrop-blur-md border-b border-brand-cream transition-all duration-300 ${isScrolled ? "shadow-md py-2" : "shadow-sm py-4"
+                    }`}
+            >
+                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between">
                     {/* Logo */}
                     <Link href="/" aria-label="Sunitha Gadwal Saree House — home">
@@ -115,11 +116,17 @@ export default function Header({}: HeaderProps) {
                         </button>
                     </div>
                 </div>
-            </div>
+                </div>
+            </header>
 
-            {/* Mobile Menu — a self-contained full-screen overlay with its own
-                close control, so it never depends on the header underneath
-                staying at a predictable height. */}
+            {/* Mobile Menu — rendered as a sibling of <header>, not a child:
+                the header has backdrop-blur-md, and a `filter`/`backdrop-filter`
+                on an ancestor creates a new containing block for
+                `position: fixed` descendants. Nested inside <header>, this
+                overlay's `fixed inset-0` was resolving against the header's
+                own (short) box instead of the viewport, so it only ever
+                covered the top ~90px and the real page showed through
+                beneath it. */}
             <div
                 className={`md:hidden fixed inset-0 z-[60] bg-brand-ivory overflow-y-auto transition-transform duration-300 ease-in-out ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full pointer-events-none"
                     }`}
@@ -153,6 +160,6 @@ export default function Header({}: HeaderProps) {
                     <WhatsAppButton variant="primary" label="Get Price on WhatsApp" />
                 </nav>
             </div>
-        </header>
+        </>
     );
 }
