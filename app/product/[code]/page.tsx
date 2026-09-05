@@ -19,8 +19,9 @@ export async function generateStaticParams() {
 }
 
 // Metadata generation
-export async function generateMetadata({ params }: { params: { code: string } }): Promise<Metadata> {
-    const product = products.find((p) => p.code === params.code);
+export async function generateMetadata({ params }: { params: Promise<{ code: string }> }): Promise<Metadata> {
+    const { code } = await params;
+    const product = products.find((p) => p.code === code);
     if (!product) return { title: "Product Not Found" };
 
     return {
@@ -34,8 +35,9 @@ export async function generateMetadata({ params }: { params: { code: string } })
     };
 }
 
-export default function ProductPage({ params }: { params: { code: string } }) {
-    const product = products.find((p) => p.code === params.code);
+export default async function ProductPage({ params }: { params: Promise<{ code: string }> }) {
+    const { code } = await params;
+    const product = products.find((p) => p.code === code);
 
     if (!product) {
         notFound();
